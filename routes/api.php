@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JWTAuthController;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::prefix('auth')->group(function () {
     Route::post('/refresh' , [JWTAuthController::class, 'refresh' ])->name('auth.refresh');
     Route::post('/logout'  , [JWTAuthController::class, 'logout'  ])->name('auth.logout');
 });
+
+Route::apiResource('workspace', WorkspaceController::class);
