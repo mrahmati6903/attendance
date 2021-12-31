@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -18,6 +19,16 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password'
     ];
+
+    /**
+     * Transform password string to hash string when store user in users table
+     * 
+     * @param string $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
