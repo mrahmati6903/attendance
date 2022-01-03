@@ -12,6 +12,7 @@ class WorkspaceController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->authorizeResource(Workspace::class, 'workspace');
     }
 
     public function index()
